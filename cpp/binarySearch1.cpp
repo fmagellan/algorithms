@@ -45,36 +45,76 @@ int main() {
 
     // 4. Ask for an input number, from the user.
     int elementToSearch{};
-    std::cout << "\nEnter a number, that will be used to search in the array: ";
-    std::cin >> elementToSearch;
+    std::cout << "\nDo you want to search a number in the array? Y/N: ";
+    char response{};
+    while ((std::cin >> response) && (response == 'Y')) {
+        std::cout << "Enter a number, that will be used to search in the array: ";
+        std::cin >> elementToSearch;
 
-    // 5. Search for the input number in the linear order, and print the index.
-    bool isFound{};
-    int indexFound{};
-    for (int index{}; index < ascVector.size(); ++index) {
-        if (elementToSearch == ascVector[index])  {
-            isFound = true;
-            indexFound = index;
-            break;
+        // 5. Search for the input number in the linear order, and print the index.
+        {
+            bool isFound{};
+            int indexFound{};
+            for (int index{}; index < ascVector.size(); ++index) {
+                if (elementToSearch == ascVector[index])  {
+                    isFound = true;
+                    indexFound = index;
+                    break;
+                }
+
+                if (elementToSearch > ascVector[index]) {
+                    continue;
+                }
+
+                if (elementToSearch < ascVector[index]) {
+                    break;
+                }
+            }
+
+            if (isFound) {
+                std::cout << "Used Linear search. The element is found. The index is: " << indexFound << '\n';
+            } else {
+                std::cout << "Used Linear search. The element is NOT found.\n";
+            }
         }
 
-        if (elementToSearch > ascVector[index]) {
-            continue;
+        // 6. Search for the input number in the binary order, and print the index.
+        {
+            bool isFound{};
+            int lowIndex{ 0 }, highIndex{ static_cast<int>(ascVector.size()) - 1 };
+            int midIndex{ (lowIndex + highIndex) / 2 };
+            while (lowIndex <= highIndex) {
+                if (elementToSearch == ascVector[midIndex]) {
+                    isFound = true;
+                    break;
+                }
+
+                if (lowIndex == highIndex) {
+                    break;
+                }
+
+                if (elementToSearch < ascVector[midIndex]) {
+                    highIndex = midIndex - 1;
+                    midIndex = (lowIndex + highIndex) / 2;
+                    continue;
+                }
+
+                if (elementToSearch > ascVector[midIndex]) {
+                    lowIndex = midIndex + 1;
+                    midIndex = (lowIndex + highIndex) / 2;
+                    continue;
+                }
+            }
+
+            if (isFound) {
+                std::cout << "Used Binary search. The element is found. The index is: " << midIndex << '\n';
+            } else {
+                std::cout << "Used Binary search. The element is NOT found.\n";
+            }
         }
 
-        if (elementToSearch < ascVector[index]) {
-            break;
-        }
+        std::cout << "\nDo you want to search a number in the array, again? Y/N: ";
     }
-
-    if (isFound) {
-        std::cout << "Used Linear search. The element is found. The index is: " << indexFound << '\n';
-    } else {
-        std::cout << "Used Linear search. The element is NOT found.\n";
-    }
-
-
-
 
     return (0);
 }
