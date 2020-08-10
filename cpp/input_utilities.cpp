@@ -6,7 +6,7 @@
 #include "cpp/input_utilities.h"
 
 void getInputVector(std::vector<int> &vec) {
-    std::cout << "Enter the vector to be sorted: ";
+    std::cout << "Enter the vector: ";
     std::string str{};
     std::getline(std::cin, str);
 
