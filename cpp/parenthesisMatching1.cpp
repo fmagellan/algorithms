@@ -4,25 +4,6 @@
 
 #include "cpp/stackArrayTemplate.h"
 
-bool isOperator(const char op) {
-    if ((op == '+') || (op == '-') || (op == '/') || (op == '*')) {
-        return (true);
-    }
-
-    return (false);
-}
-
-int getOperatorPriority(const char op) {
-    if ((op == '+') || (op == '-')) {
-        return (1);
-    }
-
-    if ((op == '*') || (op == '/')) {
-        return (2);
-    }
-
-    return (0);
-}
 
 bool isParenthesisMatching(const char *pExpr) {
     if (!pExpr) {
