@@ -2,8 +2,8 @@
 
 // This file implements Dequeue ADT, by using Linked list datastructure.
 
-#ifndef CPP_DEQUEUELINKEDLISTTEMPLATE_H_
-#define CPP_DEQUEUELINKEDLISTTEMPLATE_H_
+#ifndef CPP_INCLUDE_DEQUEUELINKEDLISTTEMPLATE_H_
+#define CPP_INCLUDE_DEQUEUELINKEDLISTTEMPLATE_H_
 
 #include <cassert>
 #include <iostream>
@@ -125,4 +125,4 @@ bool Dequeue<T>::isEmpty() const {
 
 };  // namespace Magellan
 
-#endif  // CPP_DEQUEUELINKEDLISTTEMPLATE_H_
+#endif  // CPP_INCLUDE_DEQUEUELINKEDLISTTEMPLATE_H_

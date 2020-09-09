@@ -1,6 +1,6 @@
 // Copyright 2020 Magellan
 #include <iostream>
-#include "cpp/input_utilities.h"
+#include "input_utilities.h"
 
 // Assumption.
 // First array is from low to mid, and is in sorted order.

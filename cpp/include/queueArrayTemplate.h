@@ -2,8 +2,8 @@
 
 // This file implements a circular queue ADT, using an array.
 
-#ifndef CPP_QUEUEARRAYTEMPLATE_H_
-#define CPP_QUEUEARRAYTEMPLATE_H_
+#ifndef CPP_INCLUDE_QUEUEARRAYTEMPLATE_H_
+#define CPP_INCLUDE_QUEUEARRAYTEMPLATE_H_
 
 #include <cassert>
 #include <iostream>
@@ -89,4 +89,4 @@ bool Queue<T>::isFull() const {
 
 };  // namespace Magellan
 
-#endif  // CPP_QUEUEARRAYTEMPLATE_H_
+#endif  // CPP_INCLUDE_QUEUEARRAYTEMPLATE_H_

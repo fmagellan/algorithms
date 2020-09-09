@@ -1,7 +1,7 @@
 // Copyright 2020 Magellan
 #include <iostream>
 
-#include "cpp/input_utilities.h"
+#include "input_utilities.h"
 
 void mergeSortedArrays(std::vector<int> &a, std::vector<int> &b, std::vector<int> &result) {
     int aSize{ static_cast<int> (a.size()) };

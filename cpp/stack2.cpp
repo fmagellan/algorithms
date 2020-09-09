@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "cpp/stackLinkedListTemplate.h"
+#include "stackLinkedListTemplate.h"
 
 int main() {
     Magellan::Stack<int> stack;

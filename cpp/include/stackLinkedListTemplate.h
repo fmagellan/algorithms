@@ -2,8 +2,8 @@
 
 // This file implements a Stack ADT by using linked list datastructure.
 
-#ifndef CPP_STACKLINKEDLISTTEMPLATE_H_
-#define CPP_STACKLINKEDLISTTEMPLATE_H_
+#ifndef CPP_INCLUDE_STACKLINKEDLISTTEMPLATE_H_
+#define CPP_INCLUDE_STACKLINKEDLISTTEMPLATE_H_
 #include <cassert>
 
 namespace Magellan {
@@ -79,4 +79,4 @@ void Stack<T>::display() {
 
 };  // namespace Magellan
 
-#endif  // CPP_STACKLINKEDLISTTEMPLATE_H_
+#endif  // CPP_INCLUDE_STACKLINKEDLISTTEMPLATE_H_

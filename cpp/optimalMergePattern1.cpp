@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "cpp/input_utilities.h"
+#include "input_utilities.h"
 
 int main() {
     std::vector<int> vecFileSize;

@@ -1,6 +1,6 @@
 // Copyright 2020 Magellan
 
-#include "cpp/queueArrayTemplate.h"
+#include "queueArrayTemplate.h"
 
 int main() {
     Magellan::Queue<int> queue(10);

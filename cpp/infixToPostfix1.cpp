@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#include "cpp/stackArrayTemplate.h"
+#include "stackArrayTemplate.h"
 
 bool isOperator(const char op) {
     if ((op == '+') || (op == '-') || (op == '/') || (op == '*')) {

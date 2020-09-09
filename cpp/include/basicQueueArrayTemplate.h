@@ -2,8 +2,8 @@
 
 // This file implements a Queue ADT, by using array datastructure.
 
-#ifndef CPP_BASICQUEUEARRAYTEMPLATE_H_
-#define CPP_BASICQUEUEARRAYTEMPLATE_H_
+#ifndef CPP_INCLUDE_BASICQUEUEARRAYTEMPLATE_H_
+#define CPP_INCLUDE_BASICQUEUEARRAYTEMPLATE_H_
 
 #include <cassert>
 #include <iostream>
@@ -74,4 +74,4 @@ void BasicQueue<T>::display() {
 
 };  // namespace Magellan
 
-#endif  // CPP_BASICQUEUEARRAYTEMPLATE_H_
+#endif  // CPP_INCLUDE_BASICQUEUEARRAYTEMPLATE_H_

@@ -1,6 +1,6 @@
 // Copyright 2020 Magellan
 
-#include "cpp/queueLinkedListTemplate.h"
+#include "queueLinkedListTemplate.h"
 
 int main() {
     Magellan::Queue<int> queue;

@@ -1,6 +1,6 @@
 // Copyright 2020 Magellan
 
-#include "cpp/dequeueLinkedListTemplate.h"
+#include "dequeueLinkedListTemplate.h"
 
 int main() {
     Magellan::Dequeue<int> dequeue;

@@ -3,7 +3,7 @@
 #include <string>
 #include <sstream>
 
-#include "cpp/input_utilities.h"
+#include "input_utilities.h"
 
 void getInputVector(std::vector<int> &vec) {
     std::cout << "Enter the vector: ";

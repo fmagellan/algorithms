@@ -1,6 +1,6 @@
 // Copyright 2020 Magellan
-#ifndef CPP_STACKARRAYTEMPLATE_H_
-#define CPP_STACKARRAYTEMPLATE_H_
+#ifndef CPP_INCLUDE_STACKARRAYTEMPLATE_H_
+#define CPP_INCLUDE_STACKARRAYTEMPLATE_H_
 #include <cassert>
 
 namespace Magellan {
@@ -66,4 +66,4 @@ bool Stack<T>::isEmpty() const {
 
 }  // namespace Magellan
 
-#endif  // CPP_STACKARRAYTEMPLATE_H_
+#endif  // CPP_INCLUDE_STACKARRAYTEMPLATE_H_

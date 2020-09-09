@@ -1,7 +1,7 @@
 // Copyright 2020 Magellan
 #include <iostream>
 
-#include "cpp/input_utilities.h"
+#include "input_utilities.h"
 
 int partition(std::vector<int> &vec, int lowIndex, int highIndex) {
     int pivotIndex{ highIndex };

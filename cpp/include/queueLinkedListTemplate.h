@@ -2,8 +2,8 @@
 
 // This file implements a Queue ADT by using a Linked list datastructure.
 
-#ifndef CPP_QUEUELINKEDLISTTEMPLATE_H_
-#define CPP_QUEUELINKEDLISTTEMPLATE_H_
+#ifndef CPP_INCLUDE_QUEUELINKEDLISTTEMPLATE_H_
+#define CPP_INCLUDE_QUEUELINKEDLISTTEMPLATE_H_
 
 #include <cassert>
 #include <iostream>
@@ -84,4 +84,4 @@ bool Queue<T>::isEmpty() const {
 
 };  // namespace Magellan
 
-#endif  // CPP_QUEUELINKEDLISTTEMPLATE_H_
+#endif  // CPP_INCLUDE_QUEUELINKEDLISTTEMPLATE_H_

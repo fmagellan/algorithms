@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "cpp/stackArrayTemplate.h"
+#include "stackArrayTemplate.h"
 
 
 bool isParenthesisMatching(const char *pExpr) {

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "cpp/stackArrayTemplate.h"
+#include "stackArrayTemplate.h"
 
 int main() {
     Magellan::Stack<int> stk(10);
