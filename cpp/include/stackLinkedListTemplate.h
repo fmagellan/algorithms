@@ -9,14 +9,24 @@
 namespace Magellan {
 
 template <class T>
-class Node {
-    public:
-        T m_data;
-        Node *m_next{ nullptr };
-};
-
-template <class T>
 class Stack {
+    public:
+        template <class NODE = T>
+        class Node {
+            public:
+                NODE m_data;
+                Node *m_next{ nullptr };
+
+                ~Node() {
+                    Node *pNode = m_next;
+                    while (m_next) {
+                        m_next = m_next->m_next;
+                        delete pNode;
+                        pNode = m_next;
+                    }
+                }
+        };
+
     private:
         Node<T> *m_top{ nullptr };
 
@@ -25,10 +35,8 @@ class Stack {
         }
 
         ~Stack() {
-            while (m_top) {
-                Node<T> *pNode = m_top;
-                m_top = m_top->m_next;
-                delete pNode;
+            if (m_top) {
+                delete m_top;
             }
         }
 
@@ -58,7 +66,11 @@ T Stack<T>::pop_back() {
 
     Node<T> *pNode = m_top;
     m_top = m_top->m_next;
-    return (pNode->m_data);
+    T item = pNode->m_data;
+    pNode = NULL;  // This is important, else, the m_next inside pNode will be deleted !
+    delete (pNode);
+
+    return (item);
 }
 
 template <class T>

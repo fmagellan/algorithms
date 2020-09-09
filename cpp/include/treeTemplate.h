@@ -4,28 +4,58 @@
 
 #include <iostream>
 
+#include "cpp/include/stackLinkedListTemplate.h"
+
 namespace Magellan {
 
 template <class T>
-class Node {
+class Tree {
     public:
-        T m_data;
-        Node *m_left{ nullptr };
-        Node *m_right{ nullptr };
-        ~Node();
+        template <class NODE = T>
+        class Node {
+            public:
+                NODE m_data;
+                Node *m_left{ nullptr };
+                Node *m_right{ nullptr };
+                ~Node();
+
+            private:
+                void freeNode(Node *pNode);
+        };
 
     private:
-        void freeNode(Node *pNode);
+        Node<T> *m_root{ nullptr };
+
+    public:
+        Tree() = default;
+        ~Tree();
+
+        void populate();
+        void populateNode(Node<T> *pParentNode, const bool leftchild);
+
+        void recursiveInOrderDisplay();
+        void recursivePreOrderDisplay();
+        void recursivePostOrderDisplay();
+
+        void linearInOrderDisplay();
+        void linearPreOrderDisplay();
+
+    private:
+        void recursiveInOrderTraversal(Node<T> *pNode);
+        void recursivePreOrderTraversal(Node<T> *pNode);
+        void recursivePostOrderTraversal(Node<T> *pNode);
 };
 
 template <class T>
-Node<T>::~Node<T> () {
+template <class NODE>
+Tree<T>::Node<NODE>::~Node<NODE> () {
     freeNode(m_left);
     freeNode(m_right);
 }
 
 template <class T>
-void Node<T>::freeNode(Node<T> *pNode) {
+template <class NODE>
+void Tree<T>::Node<NODE>::freeNode(Node<NODE> *pNode) {
     if (!m_left) {
         freeNode(m_left);
     }
@@ -36,23 +66,6 @@ void Node<T>::freeNode(Node<T> *pNode) {
 
     free(pNode);
 }
-
-template <class T>
-class Tree {
-    private:
-        Node<T> *m_root{ nullptr };
-
-    public:
-        Tree() = default;
-        ~Tree();
-
-        void displayInOrder();
-        void populate();
-        void populateNode(Node<T> *pParentNode, const bool leftchild);
-
-    private:
-        void inOrderTraversal(Node<T> *pNode);
-};
 
 template <class T>
 Tree<T>::~Tree<T> () {
@@ -101,26 +114,125 @@ void Tree<T>::populateNode(Node<T> *pParentNode, const bool leftChild) {
 }
 
 template <class T>
-void Tree<T>::displayInOrder() {
-    std::cout << "Tree: ";
+void Tree<T>::recursiveInOrderDisplay() {
+    std::cout << "InOrder display of Tree (recursive method): ";
     if (!m_root) {
         std::cout << "\n";
         return;
     }
 
-    inOrderTraversal(m_root);
+    recursiveInOrderTraversal(m_root);
     std::cout << "\n";
 }
 
 template <class T>
-void Tree<T>::inOrderTraversal(Node<T> *pNode) {
+void Tree<T>::recursiveInOrderTraversal(Node<T> *pNode) {
     if (!pNode) {
         return;
     }
 
-    inOrderTraversal(pNode->m_left);
+    recursiveInOrderTraversal(pNode->m_left);
     std::cout << pNode->m_data << ' ';
-    inOrderTraversal(pNode->m_right);
+    recursiveInOrderTraversal(pNode->m_right);
+}
+
+template <class T>
+void Tree<T>::recursivePreOrderDisplay() {
+    std::cout << "PreOrder display of Tree (recursive method): ";
+    if (!m_root) {
+        std::cout << "\n";
+        return;
+    }
+
+    recursivePreOrderTraversal(m_root);
+    std::cout << "\n";
+}
+
+template <class T>
+void Tree<T>::recursivePreOrderTraversal(Node<T> *pNode) {
+    if (!pNode) {
+        return;
+    }
+
+    std::cout << pNode->m_data << ' ';
+    recursivePreOrderTraversal(pNode->m_left);
+    recursivePreOrderTraversal(pNode->m_right);
+}
+
+template <class T>
+void Tree<T>::recursivePostOrderDisplay() {
+    std::cout << "PostOrder display of Tree (recursive method): ";
+    if (!m_root) {
+        std::cout << "\n";
+        return;
+    }
+
+    recursivePostOrderTraversal(m_root);
+    std::cout << "\n";
+}
+
+template <class T>
+void Tree<T>::recursivePostOrderTraversal(Node<T> *pNode) {
+    if (!pNode) {
+        return;
+    }
+
+    recursivePostOrderTraversal(pNode->m_left);
+    recursivePostOrderTraversal(pNode->m_right);
+    std::cout << pNode->m_data << ' ';
+}
+
+template <class T>
+void Tree<T>::linearInOrderDisplay() {
+    std::cout << "InOrder display of Tree (linear method): ";
+    if (!m_root) {
+        std::cout << "\n";
+        return;
+    }
+
+    Magellan::Stack<Magellan::Tree<T>::Node<T> *> stackPointers;
+    stackPointers.push_back(m_root);
+    Magellan::Tree<T>::Node<T> *pNode = m_root->m_left;
+
+    while (pNode || !stackPointers.isEmpty()) {
+        if (pNode) {
+            stackPointers.push_back(pNode);
+            pNode = pNode->m_left;
+        } else {
+            pNode = stackPointers.pop_back();
+            std::cout << pNode->m_data << ' ';
+            pNode = pNode->m_right;
+        }
+    }
+
+    std::cout << '\n';
+}
+
+template <class T>
+void Tree<T>::linearPreOrderDisplay() {
+    std::cout << "PreOrder display of Tree (linear method): ";
+    if (!m_root) {
+        std::cout << "\n";
+        return;
+    }
+
+    Magellan::Stack<Magellan::Tree<T>::Node<T> *> stackPointers;
+    std::cout << m_root->m_data << ' ';
+    stackPointers.push_back(m_root);
+    Magellan::Tree<T>::Node<T> *pNode = m_root->m_left;
+
+    while (pNode || !stackPointers.isEmpty()) {
+        if (pNode) {
+            std::cout << pNode->m_data << ' ';
+            stackPointers.push_back(pNode);
+            pNode = pNode->m_left;
+        } else {
+            pNode = stackPointers.pop_back();
+            pNode = pNode->m_right;
+        }
+    }
+
+    std::cout << '\n';
 }
 
 };  // namespace Magellan

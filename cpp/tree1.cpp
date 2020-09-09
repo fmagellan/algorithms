@@ -5,7 +5,11 @@
 int main() {
     Magellan::Tree<int> tree;
     tree.populate();
-    tree.displayInOrder();
+    tree.recursiveInOrderDisplay();
+    tree.recursivePreOrderDisplay();
+    tree.recursivePostOrderDisplay();
+    tree.linearInOrderDisplay();
+    tree.linearPreOrderDisplay();
 
     return (0);
 }
