@@ -11,5 +11,7 @@ int main() {
     tree.linearInOrderDisplay();
     tree.linearPreOrderDisplay();
 
+    std::cout << "Height of the tree: " << tree.height() << '\n';
+
     return (0);
 }

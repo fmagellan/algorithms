@@ -28,7 +28,15 @@ class Tree {
 
     public:
         Tree() = default;
-        ~Tree();
+        virtual ~Tree();
+
+        Node<T>* getRoot() {
+            return (m_root);
+        }
+
+        void setRoot(Node<T> *root) {
+            m_root = root;
+        }
 
         void populate();
         void populateNode(Node<T> *pParentNode, const bool leftchild);
@@ -39,6 +47,9 @@ class Tree {
 
         void linearInOrderDisplay();
         void linearPreOrderDisplay();
+
+        int height();
+        int height(Node<T> *pNode);
 
     private:
         void recursiveInOrderTraversal(Node<T> *pNode);
@@ -233,6 +244,26 @@ void Tree<T>::linearPreOrderDisplay() {
     }
 
     std::cout << '\n';
+}
+
+template <class T>
+int Tree<T>::height() {
+    return (height(m_root));
+}
+
+template <class T>
+int Tree<T>::height(Node<T> *pNode) {
+    if (!pNode) {
+        return (0);
+    }
+
+    int left{ height(pNode->m_left) };
+    int right{ height(pNode->m_right) };
+    if (left > right) {
+        return (left + 1);
+    }
+
+    return (right + 1);
 }
 
 };  // namespace Magellan
