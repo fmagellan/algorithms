@@ -9,9 +9,13 @@ int main() {
     tree.insertRecursive();
     tree.insertRecursive();
     tree.insertRecursive();
+    tree.insertRecursive();
+    tree.insertRecursive();
+    tree.insertRecursive();
     tree.recursiveInOrderDisplay();
     tree.recursivePreOrderDisplay();
     tree.recursivePostOrderDisplay();
+    tree.deleteNode();
 
 
     return (0);

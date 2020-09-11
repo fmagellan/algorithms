@@ -17,7 +17,9 @@ class Tree {
                 NODE m_data;
                 Node *m_left{ nullptr };
                 Node *m_right{ nullptr };
+
                 ~Node();
+                int height();
 
             private:
                 void freeNode(Node *pNode);
@@ -49,7 +51,6 @@ class Tree {
         void linearPreOrderDisplay();
 
         int height();
-        int height(Node<T> *pNode);
 
     private:
         void recursiveInOrderTraversal(Node<T> *pNode);
@@ -76,6 +77,26 @@ void Tree<T>::Node<NODE>::freeNode(Node<NODE> *pNode) {
     }
 
     free(pNode);
+}
+
+template <class T>
+template <class NODE>
+int Tree<T>::Node<NODE>::height() {
+    int left{};
+    if (m_left) {
+        left = m_left->height();
+    }
+
+    int right{};
+    if (m_right) {
+        right = m_right->height();
+    }
+
+    if (left > right) {
+        return (left + 1);
+    }
+
+    return (right + 1);
 }
 
 template <class T>
@@ -248,22 +269,7 @@ void Tree<T>::linearPreOrderDisplay() {
 
 template <class T>
 int Tree<T>::height() {
-    return (height(m_root));
-}
-
-template <class T>
-int Tree<T>::height(Node<T> *pNode) {
-    if (!pNode) {
-        return (0);
-    }
-
-    int left{ height(pNode->m_left) };
-    int right{ height(pNode->m_right) };
-    if (left > right) {
-        return (left + 1);
-    }
-
-    return (right + 1);
+    return (m_root.height());
 }
 
 };  // namespace Magellan
