@@ -17,6 +17,10 @@ int main() {
     tree.recursivePostOrderDisplay();
     tree.deleteNode();
 
+    tree.recursiveInOrderDisplay();
+    tree.recursivePreOrderDisplay();
+    tree.recursivePostOrderDisplay();
+
 
     return (0);
 }

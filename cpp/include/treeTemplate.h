@@ -61,22 +61,24 @@ class Tree {
 template <class T>
 template <class NODE>
 Tree<T>::Node<NODE>::~Node<NODE> () {
-    freeNode(m_left);
-    freeNode(m_right);
+    if (m_left) {
+        freeNode(m_left);
+    }
+    if (m_right) {
+        freeNode(m_right);
+    }
 }
 
 template <class T>
 template <class NODE>
 void Tree<T>::Node<NODE>::freeNode(Node<NODE> *pNode) {
-    if (!m_left) {
-        freeNode(m_left);
+    if (m_left) {
+        delete (m_left);
     }
 
-    if (!m_right) {
-        freeNode(m_right);
+    if (m_right) {
+        delete (m_right);
     }
-
-    free(pNode);
 }
 
 template <class T>
