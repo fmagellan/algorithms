@@ -221,11 +221,11 @@ AvlTree<T>::Node<T>* AvlTree<T>::insert(Node<T> *pRootNode, const T &value) {
     int rightBalance{ rightLeftHeight - rightRightHeight };
     if ((rootBalance == 2) && (leftBalance == 1)) {
         pRootNode = leftLeftRotation(pRootNode);
-    } else if ((rootBalance == 2) && (leftBalance = -1)) {
+    } else if ((rootBalance == 2) && (leftBalance == -1)) {
         pRootNode = leftRightRotation(pRootNode);
-    } else if ((rootBalance == -2) && (rightBalance = 1)) {
+    } else if ((rootBalance == -2) && (rightBalance == 1)) {
         pRootNode = rightLeftRotation(pRootNode);
-    } else if ((rootBalance == 2) && (rightBalance = -1)) {
+    } else if ((rootBalance == -2) && (rightBalance == -1)) {
         pRootNode = rightRightRotation(pRootNode);
     } else {
         return (pRootNode);
@@ -241,25 +241,59 @@ AvlTree<T>::Node<T>* AvlTree<T>::leftLeftRotation(Node<T> *pRootNode) {
 
     pLeftNode->m_right = pRootNode;
     pRootNode->m_left = pLeftRightNode;
-    pLeftNode->calculateHeight();
+
     pRootNode->calculateHeight();
+    pLeftNode->calculateHeight();
 
     return (pLeftNode);
 }
 
 template <class T>
 AvlTree<T>::Node<T>* AvlTree<T>::leftRightRotation(Node<T> *pRootNode) {
-    return (pRootNode);
+    Node<T> *pLeftNode{ pRootNode->m_left };
+    Node<T> *pLeftRightNode{ pLeftNode->m_right };
+
+    pLeftNode->m_right = pLeftRightNode->m_left;
+    pRootNode->m_left = pLeftRightNode->m_right;
+    pLeftRightNode->m_left = pLeftNode;
+    pLeftRightNode->m_right = pRootNode;
+
+    pLeftNode->calculateHeight();
+    pRootNode->calculateHeight();
+    pLeftRightNode->calculateHeight();
+
+    return (pLeftRightNode);
 }
 
 template <class T>
 AvlTree<T>::Node<T>* AvlTree<T>::rightLeftRotation(Node<T> *pRootNode) {
-    return (pRootNode);
+    Node<T> *pRightNode{ pRootNode->m_right };
+    Node<T> *pRightLeftNode{ pRightNode->m_left };
+
+    pRootNode->m_right = pRightLeftNode->m_left;
+    pRightNode->m_left = pRightLeftNode->m_right;
+    pRightLeftNode->m_left = pRootNode;
+    pRightLeftNode->m_right = pRightNode;
+
+    pRootNode->calculateHeight();
+    pRightNode->calculateHeight();
+    pRightLeftNode->calculateHeight();
+
+    return (pRightLeftNode);
 }
 
 template <class T>
 AvlTree<T>::Node<T>* AvlTree<T>::rightRightRotation(Node<T> *pRootNode) {
-    return (pRootNode);
+    Node<T> *pRightNode{ pRootNode->m_right };
+    Node<T> *pRightLeftNode{ pRightNode->m_left };
+
+    pRightNode->m_left = pRootNode;
+    pRootNode->m_right = pRightLeftNode;
+
+    pRootNode->calculateHeight();
+    pRightNode->calculateHeight();
+
+    return (pRightNode);
 }
 
 };  // namespace Magellan
