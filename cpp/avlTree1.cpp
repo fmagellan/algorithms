@@ -4,16 +4,23 @@
 
 int main() {
     Magellan::AvlTree<int> tree;
-    tree.insert(1);
-    tree.insert(2);
-    tree.insert(3);
-    tree.insert(4);
-    tree.insert(5);
-    tree.insert(6);
-    tree.insert(7);
-    tree.insert(8);
-    tree.insert(9);
-    tree.insert(10);
+    tree.insertValue(1);
+    tree.insertValue(2);
+    tree.insertValue(3);
+    tree.insertValue(4);
+    tree.insertValue(5);
+    tree.insertValue(6);
+    tree.insertValue(7);
+    tree.insertValue(8);
+    tree.insertValue(9);
+    tree.insertValue(10);
+    tree.recursiveInOrderDisplay();
+    tree.recursivePreOrderDisplay();
+
+    tree.deleteValue(1);
+    tree.recursiveInOrderDisplay();
+    tree.recursivePreOrderDisplay();
+    tree.deleteValue(3);
     tree.recursiveInOrderDisplay();
     tree.recursivePreOrderDisplay();
 }
