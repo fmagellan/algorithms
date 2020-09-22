@@ -8,6 +8,9 @@
 namespace Magellan {
 
 template <class T>
+using TreeNode = typename Tree<T>::template Node<T>;
+
+template <class T>
 class BinarySearchTree : public Tree<T> {
     public:
         BinarySearchTree() = default;
@@ -17,9 +20,8 @@ class BinarySearchTree : public Tree<T> {
         void insertRecursive();
         void deleteNode();
 
-        typename Tree<T>::template Node<T>* insertRecursive(typename Tree<T>::template Node<T> *pNode, const T &value);
-
-        typename Tree<T>::template Node<T>* deleteNode(typename Tree<T>::template Node<T> *pNode, const T &value);
+        TreeNode<T>* insertRecursive(TreeNode<T> *pNode, const T &value);
+        TreeNode<T>* deleteNode(TreeNode<T> *pNode, const T &value);
 };
 
 template <class T>
@@ -32,9 +34,9 @@ void BinarySearchTree<T>::insertRecursive() {
 }
 
 template <class T>
-typename Tree<T>::template Node<T>* BinarySearchTree<T>::insertRecursive(typename Tree<T>::template Node<T> *pNode, const T &value) {
+TreeNode<T>* BinarySearchTree<T>::insertRecursive(TreeNode<T> *pNode, const T &value) {
     if (!pNode) {
-        pNode = new (typename Tree<T>::template Node<T>);
+        pNode = new (TreeNode<T>);
         pNode->m_data = value;
         return (pNode);
     }
@@ -58,7 +60,7 @@ void BinarySearchTree<T>::deleteNode() {
 }
 
 template <class T>
-typename Tree<T>::template Node<T>* BinarySearchTree<T>::deleteNode(typename Tree<T>::template Node<T> *pRootNode, const T &value) {
+TreeNode<T>* BinarySearchTree<T>::deleteNode(TreeNode<T> *pRootNode, const T &value) {
     if (!pRootNode) {
         return (pRootNode);
     }
@@ -74,12 +76,12 @@ typename Tree<T>::template Node<T>* BinarySearchTree<T>::deleteNode(typename Tre
     // The current node has to be deleted.
     // Find the successor node, copy it's value to the current node, and delete the successor value.
     if (!pRootNode->m_left) {
-        typename Tree<T>::template Node<T> *pTempNode{ pRootNode->m_right };
+        TreeNode<T> *pTempNode{ pRootNode->m_right };
         pRootNode->m_right = nullptr;
         delete (pRootNode);
         return (pTempNode);
     } else if (!pRootNode->m_right) {
-        typename Tree<T>::template Node<T> *pTempNode{ pRootNode->m_left };
+        TreeNode<T> *pTempNode{ pRootNode->m_left };
         pRootNode->m_left = nullptr;
         delete (pRootNode);
         return (pTempNode);
@@ -94,7 +96,7 @@ typename Tree<T>::template Node<T>* BinarySearchTree<T>::deleteNode(typename Tre
     }
 
     if (heightLeftSubTree > heightRightSubTree) {
-        typename Tree<T>::template Node<T> *pSuccessorNode{ nullptr }, *pTempNode{ pRootNode->m_left };
+        TreeNode<T> *pSuccessorNode{ nullptr }, *pTempNode{ pRootNode->m_left };
         while (pTempNode) {
             pSuccessorNode = pTempNode;
             pTempNode = pTempNode->m_right;
@@ -107,7 +109,7 @@ typename Tree<T>::template Node<T>* BinarySearchTree<T>::deleteNode(typename Tre
             pRootNode->m_left = nullptr;
         }
     } else {
-        typename Tree<T>::template Node<T> *pSuccessorNode{ nullptr }, *pTempNode{ pRootNode->m_right };
+        TreeNode<T> *pSuccessorNode{ nullptr }, *pTempNode{ pRootNode->m_right };
         while (pTempNode) {
             pSuccessorNode = pTempNode;
             pTempNode = pTempNode->m_left;
